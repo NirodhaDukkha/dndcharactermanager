@@ -1,0 +1,382 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dndcharactermanager.AttributeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <!-- STRENGTH ROW -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.15"
+        >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:text="STR:"
+            android:textSize="@dimen/attribute_text"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_strength_value"
+            android:text="8"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_strength_mod"
+            android:text="-1"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_strength_add"
+            android:text="+"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_strength_sub"
+            android:text="-"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <!-- DEXTERITY ROW -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.15"
+        >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:text="DEX:"
+            android:textSize="@dimen/attribute_text"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_dexterity_value"
+            android:text="8"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_dexterity_mod"
+            android:text="-1"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_dexterity_add"
+            android:text="+"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_dexterity_sub"
+            android:text="-"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <!-- CONSTITUTION ROW -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.15"
+        >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:text="CON:"
+            android:textSize="@dimen/attribute_text"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_constitution_value"
+            android:text="8"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_constitution_mod"
+            android:text="-1"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_constitution_add"
+            android:text="+"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_constitution_sub"
+            android:text="-"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <!-- INTELLIGENCE ROW -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.15"
+        >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:text="INT:"
+            android:textSize="@dimen/attribute_text"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_intelligence_value"
+            android:text="8"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_intelligence_mod"
+            android:text="-1"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_intelligence_add"
+            android:text="+"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_intelligence_sub"
+            android:text="-"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <!-- WISDOM ROW -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.15"
+        >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:text="WIS:"
+            android:textSize="@dimen/attribute_text"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_wisdom_value"
+            android:text="8"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_wisdom_mod"
+            android:text="-1"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_wisdom_add"
+            android:text="+"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_wisdom_sub"
+            android:text="-"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <!-- CHARISMA ROW -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.15"
+        >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:text="CHA:"
+            android:textSize="@dimen/attribute_text"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_charisma_value"
+            android:text="8"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_charisma_mod"
+            android:text="-1"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_charisma_add"
+            android:text="+"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_charisma_sub"
+            android:text="-"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <!--Points Tracker-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Points Remaining:"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.66"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_points_remaining"
+            android:text="27"
+            android:textSize="@dimen/attribute_num"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.33"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>
