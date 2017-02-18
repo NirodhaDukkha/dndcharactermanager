@@ -51,6 +51,8 @@ public class CharacterClassFragment extends Fragment {
         ft.addToBackStack(null);
         ft.commit();
 
+        //TODO:  ERRONEOUS TODO FOR TESTING GIT
+
         Spinner classSpinner = (Spinner) view.findViewById(R.id.class_spinner);
         Spinner raceSpinner = (Spinner) view.findViewById(R.id.race_spinner);
         classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
