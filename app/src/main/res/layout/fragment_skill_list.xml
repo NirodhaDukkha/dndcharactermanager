@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dndcharactermanager.SkillListFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_athletics"
+        android:text="ATHLETICS  "
+        android:padding="10dp"
+        />
+
+    <CheckBox
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_athletics"
+        android:layout_alignTop="@id/tv_athletics"
+        android:layout_alignBottom="@id/tv_athletics"
+        android:layout_toRightOf="@id/tv_athletics"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_survival"
+        android:text="SURVIVAL  "
+        android:layout_below="@id/tv_athletics"
+        android:padding="10dp"
+        />
+
+    <CheckBox
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_survival"
+        android:layout_alignTop="@id/tv_survival"
+        android:layout_alignBottom="@id/tv_survival"
+        android:layout_alignLeft="@id/cb_athletics"
+        />
+
+</RelativeLayout>

@@ -4,13 +4,58 @@
     android:layout_height="match_parent"
     tools:context=".CharacterClassFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvClassPicker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/tv_class_picker"
+        android:textSize="24dp"
+        android:padding="10dp"
+        />
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:id="@+id/class_spinner"
+        android:layout_alignTop="@id/tv_class_picker"
+        android:layout_alignBottom="@id/tv_class_picker"
+        android:layout_toRightOf="@id/tv_class_picker"
+        android:padding="10dp"
+        >
+    </Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvRacePicker"
+        android:id="@+id/tv_race_picker"
+        android:layout_below="@id/tv_class_picker"
+        android:textSize="24dp"
+        android:padding="10dp"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/class_spinner"
+        android:layout_toRightOf="@id/tv_race_picker"
+        android:layout_alignTop="@id/tv_race_picker"
+        android:layout_alignBottom="@id/tv_race_picker"
+        android:id="@+id/race_spinner"
+        android:padding="10dp"
         >
 
     </Spinner>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/skill_placeholder"
+        android:layout_below="@id/tv_race_picker"
+        >
+
+    </FrameLayout>
+    
 </RelativeLayout>

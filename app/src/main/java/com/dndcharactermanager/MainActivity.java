@@ -67,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return AttributeFragment.newInstance();
                 case 1:
-                    return  CharacterClassFragment.newInstance();
+                    return CharacterClassFragment.newInstance();
             }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 2 total pages.
             return 2;
         }
 

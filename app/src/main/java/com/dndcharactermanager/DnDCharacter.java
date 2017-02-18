@@ -21,10 +21,14 @@ public class DnDCharacter {
     private int attributePointBuy = 27;
     //Character Detail Values
     private int characterLevel;
-    private Race race;
+    private Race.CharacterRace race;
     private Weapon weapon;
     private Armor armor;
     private List<CharacterClass.CharacterClassType> characterClass;
+
+    public List<CharacterClass.CharacterClassType> getCharacterClass() {
+        return characterClass;
+    }
 
     //Character Detail Enums: Class, Attributes, Skills, etc
     public enum Attributes {STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA}
@@ -46,9 +50,7 @@ public class DnDCharacter {
         //If the constructor is called, it's a new character and values should be set to defaults
         characterLevel = 1;   //TODO: get characterLevel by adding up characterClass levels
         characterClass = new ArrayList<>();
-        characterClass.add(CharacterClass.CharacterClassType.FIGHTER);
 //        SavesMap = characterClass.get(1).getSaveProficiency();
-        race = new Race(Race.CharacterRace.HUMAN);
         weapon = new Weapon(Weapon.WeaponName.LONGSWORD);  //Weapon default is Longsword.
         armor = new Armor(Armor.ArmorName.LEATHER);  //Armor default is Leather.
         AttributeMap = new HashMap<>(6);
@@ -88,11 +90,11 @@ public class DnDCharacter {
         }
     }
 
-    public Race getRace() {
+    public Race.CharacterRace getRace() {
         return race;
     }
 
-    public void setRace(Race race) {
+    public void setRace(Race.CharacterRace race) {
         this.race = race;
     }
 
