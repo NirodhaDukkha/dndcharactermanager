@@ -54,7 +54,6 @@ public class AttributeFragment extends Fragment {
 
         wireAttributeWidgets(view);
 
-
         for(final DnDCharacter.Attributes a : DnDCharacter.Attributes.values()){
 
         attributeBTaddMap.get(a).setOnClickListener(new View.OnClickListener() {

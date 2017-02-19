@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.AppCompatSpinner;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import com.dndcharactermanager.CharacterChoices.CharacterClass;
 import com.dndcharactermanager.CharacterChoices.Race;
@@ -28,6 +28,7 @@ public class CharacterClassFragment extends Fragment {
 
 
     DnDCharacter dnDCharacter;
+    Button updateButton;
 
     public CharacterClassFragment() {
         // Required empty public constructor
@@ -47,17 +48,26 @@ public class CharacterClassFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_charclass, container, false);
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.skill_placeholder,new SkillListFragment());
-        ft.addToBackStack(null);
-        ft.commit();
+        ft.replace(R.id.skill_placeholder,new SkillListFragment()).commit();
 
-        Spinner classSpinner = (Spinner) view.findViewById(R.id.class_spinner);
+        final Spinner levelSpinner = (Spinner) view.findViewById(R.id.level_spinner);
+
+        ArrayList<Integer> levelList = new ArrayList<>();
+        for (int i = 1; i < 21; i++) {
+            levelList.add(i);
+        }
+
+        ArrayAdapter<Integer> levelAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,levelList);
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        levelSpinner.setAdapter(levelAdapter);
+
+        levelSpinner.setAdapter(levelAdapter);
+        final Spinner classSpinner = (Spinner) view.findViewById(R.id.class_spinner);
         Spinner raceSpinner = (Spinner) view.findViewById(R.id.race_spinner);
+
         classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                CharacterClass.CharacterClassType item = (CharacterClass.CharacterClassType) adapterView.getItemAtPosition(i);
-                dnDCharacter.getCharacterClass().add(item); //TODO: THIS SHOULD FOLLOW SOME KIND OF SUBMIT BUTTON
             }
 
             @Override
@@ -68,8 +78,6 @@ public class CharacterClassFragment extends Fragment {
         raceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Race.CharacterRace item = (Race.CharacterRace) adapterView.getItemAtPosition(i);
-                dnDCharacter.setRace(item); //TODO: THIS SHOULD FOLLOW SOME KIND OF SUBMIT BUTTON
             }
 
             @Override
@@ -95,7 +103,24 @@ public class CharacterClassFragment extends Fragment {
         classSpinner.setAdapter(classAdapter);
         raceSpinner.setAdapter(raceAdapter);
 
+        updateButton = (Button) view.findViewById(R.id.bt_update);
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CharacterClass charClass = new CharacterClass((CharacterClass.CharacterClassType) classSpinner.getSelectedItem());
+                charClass.setClassLevel((Integer) levelSpinner.getSelectedItem());
+                dnDCharacter.getCharacterClass().add(charClass);
+                dnDCharacter.updateCharacter();
+                Log.d(getString(R.string.log_breakpoint), "update button pressed");
+            }
+        });
+
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

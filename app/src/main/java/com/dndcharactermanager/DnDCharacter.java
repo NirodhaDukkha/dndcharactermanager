@@ -24,15 +24,29 @@ public class DnDCharacter {
     private Race.CharacterRace race;
     private Weapon weapon;
     private Armor armor;
-    private List<CharacterClass.CharacterClassType> characterClass;
+    private List<CharacterClass> characterClass;
 
-    public List<CharacterClass.CharacterClassType> getCharacterClass() {
+    public List<CharacterClass> getCharacterClass() {
         return characterClass;
     }
 
     //Character Detail Enums: Class, Attributes, Skills, etc
     public enum Attributes {STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA}
-    public enum Skills {ATHLETICS, ACROBATICS, PERCEPTION, NATURE}
+
+    public enum Skills {ATHLETICS(false), ACROBATICS(false), PERCEPTION(false), NATURE(false);
+        private Boolean proficient;
+        Skills(Boolean proficient){
+            this.proficient = proficient;
+        };
+
+        public Boolean getProficient() {
+            return proficient;
+        }
+
+        public void setProficient(Boolean proficient) {
+            this.proficient = proficient;
+        }
+    }
 
     //Character fields to fill
     private Map<Attributes,Integer> AttributeMap;
@@ -53,6 +67,8 @@ public class DnDCharacter {
 //        SavesMap = characterClass.get(1).getSaveProficiency();
         weapon = new Weapon(Weapon.WeaponName.LONGSWORD);  //Weapon default is Longsword.
         armor = new Armor(Armor.ArmorName.LEATHER);  //Armor default is Leather.
+        SavesMap = new HashMap<>(6);
+        fillSaves();
         AttributeMap = new HashMap<>(6);
         fillAttributes();  //All Attributes default to 8
         SkillProficiencyMap = new HashMap<>(30);
@@ -136,5 +152,25 @@ public class DnDCharacter {
 
     public void setSavesMap(Map<Attributes, Boolean> savesMap) {
         SavesMap = savesMap;
+    }
+
+    public int getCharacterLevel() {
+        return characterLevel;
+    }
+
+    public void setCharacterLevel(int characterLevel) {
+        this.characterLevel = characterLevel;
+    }
+
+    public void setCharacterClass(List<CharacterClass> characterClass) {
+        this.characterClass = characterClass;
+    }
+
+    public void updateCharacter(){
+        int sum = 0;
+        for (CharacterClass c: characterClass) {
+            sum += c.getClassLevel();
+        }
+        characterLevel = sum;
     }
 }

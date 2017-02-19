@@ -16,7 +16,7 @@
         />
 
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/class_spinner"
         android:layout_alignTop="@id/tv_class_picker"
@@ -25,6 +25,16 @@
         android:padding="10dp"
         >
     </Spinner>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/level_spinner"
+        android:layout_alignTop="@id/tv_class_picker"
+        android:layout_alignBottom="@id/tv_class_picker"
+        android:layout_toRightOf="@id/class_spinner"
+        android:padding="10dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +47,7 @@
         />
 
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/class_spinner"
         android:layout_toRightOf="@id/tv_race_picker"
@@ -57,5 +67,14 @@
         >
 
     </FrameLayout>
-    
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UpdateChar"
+        android:id="@+id/bt_update"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
 </RelativeLayout>

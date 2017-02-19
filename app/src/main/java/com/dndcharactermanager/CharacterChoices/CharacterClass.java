@@ -12,9 +12,53 @@ import java.util.Map;
 
 public class CharacterClass {
 
-    public enum CharacterClassType {FIGHTER, BARBARIAN, WIZARD, PALADIN;
 
-    public enum CasterWeight {FULL,HALF,THIRD,NONE}
+    public CharacterClass(CharacterClassType characterClassType){
+        this.characterClassType = characterClassType;
+
+        switch(characterClassType){
+            case FIGHTER:{
+                casterWeight = CasterWeight.NONE;
+                totalSkillProficiencies = 2;
+                hitDice = 10;
+
+                skillOptions = new HashMap<>();
+                skillOptions.put(DnDCharacter.Skills.ACROBATICS, true);
+                skillOptions.put(DnDCharacter.Skills.ATHLETICS, true);
+
+                armorProficiency = new HashMap<>();
+                for(Armor.ArmorName a : Armor.ArmorName.values()){
+                    armorProficiency.put(a, true);
+                }
+
+                saveProficiency = new HashMap<>();
+                saveProficiency.put(DnDCharacter.Attributes.STRENGTH, true);
+                saveProficiency.put(DnDCharacter.Attributes.CONSTITUTION, true);
+
+                break;
+            }
+            case BARBARIAN:{
+                break;
+            }
+            case WIZARD:{
+                break;
+            }
+            case PALADIN:{
+                break;
+            }
+
+        }
+    }
+
+    public enum CharacterClassType {
+        FIGHTER, BARBARIAN, WIZARD, PALADIN;
+    }
+    private enum CasterWeight {FULL, HALF, THIRD, NONE}
+
+
+    DnDCharacter dnDCharacter = DnDCharacter.getDnDCharacter();
+    CharacterClassType characterClassType;
+
     private CasterWeight casterWeight;
     private Map<DnDCharacter.Skills, Boolean> skillOptions;
     private Map<Armor.ArmorName, Boolean> armorProficiency;
@@ -23,62 +67,39 @@ public class CharacterClass {
     private int classLevel;
     private int hitDice;
 
-    public int getHitDice() {
-        return hitDice;
-    }
-
-    public void setHitDice(int hitDice) {
-        this.hitDice = hitDice;
-    }
-
-    public int getClassLevel() {
-        return classLevel;
-    }
-
-    public void setClassLevel(int classLevel) {
-        this.classLevel = classLevel;
-    }
-
-    public int getTotalSkillProficiencies() {
-        return totalSkillProficiencies;
-    }
-
-    public void setTotalSkillProficiencies(int totalSkillProficiencies) {
-        this.totalSkillProficiencies = totalSkillProficiencies;
-    }
-
-    public Map<DnDCharacter.Attributes, Boolean> getSaveProficiency() {
-        return saveProficiency;
-    }
-
-    public void setSaveProficiency(Map<DnDCharacter.Attributes, Boolean> saveProficiency) {
-        this.saveProficiency = saveProficiency;
-    }
-
-    public Map<Armor.ArmorName, Boolean> getArmorProficiency() {
-        return armorProficiency;
-    }
-
-    public void setArmorProficiency(Map<Armor.ArmorName, Boolean> armorProficiency) {
-        this.armorProficiency = armorProficiency;
-    }
-
-    public Map<DnDCharacter.Skills, Boolean> getSkillOptions() {
-        return skillOptions;
-    }
-
-    public void setSkillOptions(Map<DnDCharacter.Skills, Boolean> skillOptions) {
-        this.skillOptions = skillOptions;
+    public CharacterClassType getCharacterClassType() {
+        return characterClassType;
     }
 
     public CasterWeight getCasterWeight() {
         return casterWeight;
     }
 
-    public void setCasterWeight(CasterWeight casterWeight) {
-        this.casterWeight = casterWeight;
+    public Map<DnDCharacter.Skills, Boolean> getSkillOptions() {
+        return skillOptions;
     }
 
+    public Map<Armor.ArmorName, Boolean> getArmorProficiency() {
+        return armorProficiency;
     }
 
+    public Map<DnDCharacter.Attributes, Boolean> getSaveProficiency() {
+        return saveProficiency;
+    }
+
+    public int getTotalSkillProficiencies() {
+        return totalSkillProficiencies;
+    }
+
+    public int getClassLevel() {
+        return classLevel;
+    }
+
+    public int getHitDice() {
+        return hitDice;
+    }
+
+    public void setClassLevel(int classLevel) {
+        this.classLevel = classLevel;
+    }
 }
