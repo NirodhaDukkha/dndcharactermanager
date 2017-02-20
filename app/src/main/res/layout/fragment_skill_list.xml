@@ -1,44 +1,84 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.dndcharactermanager.SkillListFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_athletics"
-        android:text="ATHLETICS  "
-        android:padding="10dp"
-        />
-
-    <CheckBox
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cb_athletics"
-        android:layout_alignTop="@id/tv_athletics"
-        android:layout_alignBottom="@id/tv_athletics"
-        android:layout_toRightOf="@id/tv_athletics"
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:id="@+id/skill_centerline"
         />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_survival"
-        android:text="SURVIVAL  "
-        android:layout_below="@id/tv_athletics"
-        android:padding="10dp"
-        />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tv_athletics"
+            android:text="ATHLETICS"
+            android:padding="10dp"
+            />
 
-    <CheckBox
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_athletics"
+            android:layout_toRightOf="@id/tv_athletics"
+            android:layout_alignBottom="@id/tv_athletics"
+            />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cb_survival"
-        android:layout_alignTop="@id/tv_survival"
-        android:layout_alignBottom="@id/tv_survival"
-        android:layout_alignLeft="@id/cb_athletics"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_survival"
+            android:text="SURVIVAL"
+            android:layout_below="@id/tv_athletics"
+            android:layout_toRightOf="@id/skill_centerline"
+            android:padding="10dp"
+            />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_survival"
+            android:layout_toRightOf="@id/tv_survival"
+            android:layout_alignBottom="@id/tv_survival"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_acrobatics"
+            android:layout_toRightOf="@id/skill_centerline"
+            android:text="ACROBATICS"
+            android:padding="10dp"
+            />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_acrobatics"
+            android:layout_toRightOf="@id/tv_acrobatics"
+            android:layout_alignBottom="@id/tv_acrobatics"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_medicine"
+            android:text="MEDICINE"
+            android:layout_below="@id/tv_acrobatics"
+            android:padding="10dp"
+            />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_medicine"
+            android:layout_toRightOf="@id/tv_medicine"
+            android:layout_alignBottom="@id/tv_medicine"
+            />
 
 </RelativeLayout>

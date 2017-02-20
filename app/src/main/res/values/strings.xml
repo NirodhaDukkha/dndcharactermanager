@@ -7,4 +7,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tvClassPicker">Class:</string>
     <string name="tvRacePicker">Race:</string>
+    <string name="log_breakpoint">BREAKPOINT</string>
 </resources>
