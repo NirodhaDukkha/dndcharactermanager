@@ -7,6 +7,7 @@ import com.dndcharactermanager.CharacterChoices.Weapon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -16,61 +17,73 @@ import java.util.Map;
 
 public class DnDCharacter {
 
-    //Singleton DnDCharacter
     public static final int numberOfSkills = 4;
-    private static DnDCharacter dnDCharacter;
     private int attributePointBuy = 27;
     //Character Detail Values
     private int characterLevel;
     private Race.CharacterRace race;
     private Weapon weapon;
     private Armor armor;
-    private Skills skills;
 
     private List<CharacterClass> characterClass;
-    private ArrayList<Skills> skillList;
+    private HashSet<SkillType> skillList;
     public List<CharacterClass> getCharacterClass() {
         return characterClass;
     }
 
     //Character Detail Enums: Class, Attributes, SkillType, etc
     public enum Attributes {STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA}
-    public enum SkillType {ATHLETICS, ACROBATICS, PERCEPTION, NATURE}
+    public enum SkillType {ATHLETICS, ACROBATICS, MEDICINE, SURVIVAL;
+        private SkillType(){
+            this.canBeProficient = false;
+            this.isProficient = false;
+        }
 
+        private boolean canBeProficient;
+        private boolean isProficient;
+
+        public boolean isCanBeProficient() {
+            return canBeProficient;
+        }
+
+        public void setCanBeProficient(boolean canBeProficient) {
+            this.canBeProficient = canBeProficient;
+        }
+
+        public boolean isProficient() {
+            return isProficient;
+        }
+
+        public void setProficient(boolean proficient) {
+            isProficient = proficient;
+        }
+    }
+    private int maxSkillProficiencies = 0;
     //Character fields to fill
     private Map<Attributes,Integer> AttributeMap;
     private Map<Attributes,Boolean> SavesMap;
 
+    //Singleton DnDCharacter
+    private static DnDCharacter dnDCharacter;
     public static DnDCharacter getDnDCharacter(){
         if (dnDCharacter == null){
             dnDCharacter = new DnDCharacter();
         }
             return dnDCharacter;
     }
-
     private DnDCharacter(){
         //If the constructor is called, it's a new character and values should be set to defaults
         characterLevel = 1;   //TODO: get characterLevel by adding up characterClass levels
         characterClass = new ArrayList<>();
-        skillList = new ArrayList<>();
+        skillList = new HashSet<>();
         weapon = new Weapon(Weapon.WeaponName.LONGSWORD);  //Weapon default is Longsword.
         armor = new Armor(Armor.ArmorName.LEATHER);  //Armor default is Leather.
         SavesMap = new HashMap<>(6);
         fillSaves();
         AttributeMap = new HashMap<>(6);
         fillAttributes();  //All Attributes default to 8
-    }
-
-    public int getAttributePointBuy() {
-        return attributePointBuy;
-    }
-
-    public void setAttributePointBuy(int attributePointBuy) {
-        this.attributePointBuy = attributePointBuy;
-    }
-
-    public static int getModifier(int attribute){
-        return (attribute - attribute%2 - 10)/2;
+        skillList = new HashSet<>();
+        fillSkills();
     }
 
     private void fillSaves(){
@@ -78,11 +91,30 @@ public class DnDCharacter {
             SavesMap.put(a, false);
         }
     }
-
     private void fillAttributes(){
         for(Attributes a : Attributes.values()){
             AttributeMap.put(a, 8);
         }
+    }
+
+    private void fillSkills(){
+        for(SkillType s : SkillType.values()){
+            skillList.add(s);
+        }
+    }
+
+    public HashSet<SkillType> getSkillList() {
+        return skillList;
+    }
+    public void setSkillList(HashSet<SkillType> skillList) {
+        this.skillList = skillList;
+    }
+
+    public int getAttributePointBuy() {
+        return attributePointBuy;
+    }
+    public void setAttributePointBuy(int attributePointBuy) {
+        this.attributePointBuy = attributePointBuy;
     }
 
     public Race.CharacterRace getRace() {
@@ -145,35 +177,8 @@ public class DnDCharacter {
         characterLevel = sum;
     }
 
-    private class Skills{
+    public static int getModifier(int attribute){
 
-
-        private SkillType skillType;
-        private boolean canBeProficient;
-        private boolean isProficient;
-
-        public SkillType getSkillType() {
-            return skillType;
-        }
-
-        public void setSkillType(SkillType skillType) {
-            this.skillType = skillType;
-        }
-
-        public boolean isCanBeProficient() {
-            return canBeProficient;
-        }
-
-        public void setCanBeProficient(boolean canBeProficient) {
-            this.canBeProficient = canBeProficient;
-        }
-
-        public boolean isProficient() {
-            return isProficient;
-        }
-
-        public void setProficient(boolean proficient) {
-            isProficient = proficient;
-        }
+        return (attribute - attribute%2 - 10)/2;
     }
 }

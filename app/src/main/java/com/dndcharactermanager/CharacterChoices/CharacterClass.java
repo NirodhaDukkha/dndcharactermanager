@@ -21,13 +21,16 @@ public class CharacterClass {
                 totalSkillProficiencies = 2;
                 hitDice = 10;
 
-                skillOptions = new HashMap<>();
-                skillOptions.put(DnDCharacter.SkillType.ACROBATICS, true);
-                skillOptions.put(DnDCharacter.SkillType.ATHLETICS, true);
-
+                DnDCharacter.SkillType skillType = DnDCharacter.SkillType.ACROBATICS;
+                skillType.setCanBeProficient(true);
+                dnDCharacter.getSkillList().add(skillType);
+                skillType = DnDCharacter.SkillType.ATHLETICS;
+                skillType.setCanBeProficient(true);
+                dnDCharacter.getSkillList().add(skillType);
 
 
                 armorProficiency = new HashMap<>();
+
                 for(Armor.ArmorName a : Armor.ArmorName.values()){
                     armorProficiency.put(a, true);
                 }
@@ -61,10 +64,9 @@ public class CharacterClass {
     CharacterClassType characterClassType;
 
     private CasterWeight casterWeight;
-    private Map<DnDCharacter.SkillType, Boolean> skillOptions;
     private Map<Armor.ArmorName, Boolean> armorProficiency;
     private Map<DnDCharacter.Attributes, Boolean> saveProficiency;
-    private int totalSkillProficiencies;
+    private int totalSkillProficiencies = 2;
     private int classLevel;
     private int hitDice;
 
@@ -74,10 +76,6 @@ public class CharacterClass {
 
     public CasterWeight getCasterWeight() {
         return casterWeight;
-    }
-
-    public Map<DnDCharacter.SkillType, Boolean> getSkillOptions() {
-        return skillOptions;
     }
 
     public Map<Armor.ArmorName, Boolean> getArmorProficiency() {

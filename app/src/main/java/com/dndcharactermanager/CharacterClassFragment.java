@@ -112,7 +112,6 @@ public class CharacterClassFragment extends Fragment {
                 charClass.setClassLevel((Integer) levelSpinner.getSelectedItem());
                 dnDCharacter.getCharacterClass().add(charClass);
                 dnDCharacter.updateCharacter();
-                Log.d(getString(R.string.log_breakpoint), "update button pressed");
             }
         });
 
