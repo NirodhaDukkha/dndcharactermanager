@@ -15,7 +15,7 @@ public class Race {
     private CharacterRace characterRace;
 
     private Map<DnDCharacter.Attributes, Integer> AttributeBonus;
-    private Map<DnDCharacter.Skills, Boolean> SkillBonus;
+    private Map<DnDCharacter.SkillType, Boolean> SkillBonus;
 
     //Private empty constructor.  Force use of argument constructor.
     private Race(){}
@@ -62,7 +62,7 @@ public class Race {
         return AttributeBonus;
     }
 
-    public Map<DnDCharacter.Skills, Boolean> getSkillBonus() {
+    public Map<DnDCharacter.SkillType, Boolean> getSkillBonus() {
         return SkillBonus;
     }
 

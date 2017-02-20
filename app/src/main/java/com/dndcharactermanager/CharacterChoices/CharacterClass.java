@@ -1,6 +1,5 @@
 package com.dndcharactermanager.CharacterChoices;
 
-import com.dndcharactermanager.CharacterClassFragment;
 import com.dndcharactermanager.DnDCharacter;
 
 import java.util.HashMap;
@@ -23,8 +22,10 @@ public class CharacterClass {
                 hitDice = 10;
 
                 skillOptions = new HashMap<>();
-                skillOptions.put(DnDCharacter.Skills.ACROBATICS, true);
-                skillOptions.put(DnDCharacter.Skills.ATHLETICS, true);
+                skillOptions.put(DnDCharacter.SkillType.ACROBATICS, true);
+                skillOptions.put(DnDCharacter.SkillType.ATHLETICS, true);
+
+
 
                 armorProficiency = new HashMap<>();
                 for(Armor.ArmorName a : Armor.ArmorName.values()){
@@ -60,7 +61,7 @@ public class CharacterClass {
     CharacterClassType characterClassType;
 
     private CasterWeight casterWeight;
-    private Map<DnDCharacter.Skills, Boolean> skillOptions;
+    private Map<DnDCharacter.SkillType, Boolean> skillOptions;
     private Map<Armor.ArmorName, Boolean> armorProficiency;
     private Map<DnDCharacter.Attributes, Boolean> saveProficiency;
     private int totalSkillProficiencies;
@@ -75,7 +76,7 @@ public class CharacterClass {
         return casterWeight;
     }
 
-    public Map<DnDCharacter.Skills, Boolean> getSkillOptions() {
+    public Map<DnDCharacter.SkillType, Boolean> getSkillOptions() {
         return skillOptions;
     }
 

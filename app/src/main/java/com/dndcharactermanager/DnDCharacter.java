@@ -17,6 +17,7 @@ import java.util.Map;
 public class DnDCharacter {
 
     //Singleton DnDCharacter
+    public static final int numberOfSkills = 4;
     private static DnDCharacter dnDCharacter;
     private int attributePointBuy = 27;
     //Character Detail Values
@@ -24,33 +25,20 @@ public class DnDCharacter {
     private Race.CharacterRace race;
     private Weapon weapon;
     private Armor armor;
-    private List<CharacterClass> characterClass;
+    private Skills skills;
 
+    private List<CharacterClass> characterClass;
+    private ArrayList<Skills> skillList;
     public List<CharacterClass> getCharacterClass() {
         return characterClass;
     }
 
-    //Character Detail Enums: Class, Attributes, Skills, etc
+    //Character Detail Enums: Class, Attributes, SkillType, etc
     public enum Attributes {STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA}
-
-    public enum Skills {ATHLETICS(false), ACROBATICS(false), PERCEPTION(false), NATURE(false);
-        private Boolean proficient;
-        Skills(Boolean proficient){
-            this.proficient = proficient;
-        };
-
-        public Boolean getProficient() {
-            return proficient;
-        }
-
-        public void setProficient(Boolean proficient) {
-            this.proficient = proficient;
-        }
-    }
+    public enum SkillType {ATHLETICS, ACROBATICS, PERCEPTION, NATURE}
 
     //Character fields to fill
     private Map<Attributes,Integer> AttributeMap;
-    private Map<Skills,Boolean> SkillProficiencyMap;
     private Map<Attributes,Boolean> SavesMap;
 
     public static DnDCharacter getDnDCharacter(){
@@ -64,15 +52,13 @@ public class DnDCharacter {
         //If the constructor is called, it's a new character and values should be set to defaults
         characterLevel = 1;   //TODO: get characterLevel by adding up characterClass levels
         characterClass = new ArrayList<>();
-//        SavesMap = characterClass.get(1).getSaveProficiency();
+        skillList = new ArrayList<>();
         weapon = new Weapon(Weapon.WeaponName.LONGSWORD);  //Weapon default is Longsword.
         armor = new Armor(Armor.ArmorName.LEATHER);  //Armor default is Leather.
         SavesMap = new HashMap<>(6);
         fillSaves();
         AttributeMap = new HashMap<>(6);
         fillAttributes();  //All Attributes default to 8
-        SkillProficiencyMap = new HashMap<>(30);
-        fillSkills();  //All Skills default to "not proficient";
     }
 
     public int getAttributePointBuy() {
@@ -85,13 +71,6 @@ public class DnDCharacter {
 
     public static int getModifier(int attribute){
         return (attribute - attribute%2 - 10)/2;
-    }
-
-
-    private void fillSkills(){
-        for(Skills s : Skills.values()){
-            SkillProficiencyMap.put(s, false);
-        }
     }
 
     private void fillSaves(){
@@ -138,14 +117,6 @@ public class DnDCharacter {
         AttributeMap = attributeMap;
     }
 
-    public Map<Skills, Boolean> getSkillProficiencyMap() {
-        return SkillProficiencyMap;
-    }
-
-    public void setSkillProficiencyMap(Map<Skills, Boolean> skillProficiencyMap) {
-        SkillProficiencyMap = skillProficiencyMap;
-    }
-
     public Map<Attributes, Boolean> getSavesMap() {
         return SavesMap;
     }
@@ -172,5 +143,37 @@ public class DnDCharacter {
             sum += c.getClassLevel();
         }
         characterLevel = sum;
+    }
+
+    private class Skills{
+
+
+        private SkillType skillType;
+        private boolean canBeProficient;
+        private boolean isProficient;
+
+        public SkillType getSkillType() {
+            return skillType;
+        }
+
+        public void setSkillType(SkillType skillType) {
+            this.skillType = skillType;
+        }
+
+        public boolean isCanBeProficient() {
+            return canBeProficient;
+        }
+
+        public void setCanBeProficient(boolean canBeProficient) {
+            this.canBeProficient = canBeProficient;
+        }
+
+        public boolean isProficient() {
+            return isProficient;
+        }
+
+        public void setProficient(boolean proficient) {
+            isProficient = proficient;
+        }
     }
 }
