@@ -7,13 +7,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dndcharactermanager.CharacterChoices.CharacterClass;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -70,6 +76,34 @@ public class AttributeFragment extends Fragment {
                 }
             });
         }
+
+        final Spinner levelSpinner = (Spinner) view.findViewById(R.id.att_level_spinner);
+        ArrayList<Integer> levelList = new ArrayList<>();
+        for (int i = 1; i < 21; i++) {
+            levelList.add(i);
+        }
+        ArrayAdapter<Integer> levelAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,levelList);
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        levelSpinner.setAdapter(levelAdapter);
+
+        final Spinner classSpinner = (Spinner) view.findViewById(R.id.att_class_spinner);
+        classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        List<CharacterClass.CharacterClassType> characterClassTypes = new ArrayList<>();
+        for(CharacterClass.CharacterClassType c : CharacterClass.CharacterClassType.values()){
+            characterClassTypes.add(c);
+        }
+        ArrayAdapter<CharacterClass.CharacterClassType> classAdapter =  new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,characterClassTypes);
+        classSpinner.setAdapter(classAdapter);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 //        Gson gson = new Gson();
 //        String jsonString = gson.toJson(dnDCharacter);

@@ -9,67 +9,49 @@ import java.util.Map;
  * Created by Dylan on 2/7/2017.
  */
 
-public class Race {
-
-    public enum CharacterRace {ORC, HUMAN, ELF, GNOME}
-    private CharacterRace characterRace;
-
-    private Map<DnDCharacter.Attributes, Integer> AttributeBonus;
-    private Map<DnDCharacter.SkillType, Boolean> SkillBonus;
+public enum Race {ORC, HUMAN, ELF, GNOME;
 
     //Private empty constructor.  Force use of argument constructor.
-    private Race(){}
 
-    public Race(CharacterRace race){
+    private Map<Attribute,Integer> attributeBonus;
 
-        AttributeBonus = new HashMap<>();
-        SkillBonus = new HashMap<>();
+    private Race() {
 
-        switch(race){
-            case ORC:{
-                characterRace = CharacterRace.ORC;
-                AttributeBonus.put(DnDCharacter.Attributes.STRENGTH,2);
-                AttributeBonus.put(DnDCharacter.Attributes.CONSTITUTION,1);
+        attributeBonus = new HashMap<>();
+
+        switch (this) {
+            case ORC: {
+                attributeBonus.put(Attribute.STRENGTH, 2);
+                attributeBonus.put(Attribute.CONSTITUTION, 1);
                 break;
             }
-            case HUMAN:{
-                characterRace = CharacterRace.HUMAN;
-                AttributeBonus.put(DnDCharacter.Attributes.STRENGTH,1);
-                AttributeBonus.put(DnDCharacter.Attributes.DEXTERITY,1);
-                AttributeBonus.put(DnDCharacter.Attributes.CONSTITUTION,1);
-                AttributeBonus.put(DnDCharacter.Attributes.INTELLIGENCE,1);
-                AttributeBonus.put(DnDCharacter.Attributes.WISDOM,1);
-                AttributeBonus.put(DnDCharacter.Attributes.CHARISMA,1);
+            case HUMAN: {
+                attributeBonus.put(Attribute.STRENGTH, 1);
+                attributeBonus.put(Attribute.DEXTERITY, 1);
+                attributeBonus.put(Attribute.CONSTITUTION, 1);
+                attributeBonus.put(Attribute.INTELLIGENCE, 1);
+                attributeBonus.put(Attribute.WISDOM, 1);
+                attributeBonus.put(Attribute.CHARISMA, 1);
                 break;
             }
-            case ELF:{
-                characterRace = CharacterRace.ELF;
-                AttributeBonus.put(DnDCharacter.Attributes.DEXTERITY,2);
-                AttributeBonus.put(DnDCharacter.Attributes.WISDOM,1);
+            case ELF: {
+                attributeBonus.put(Attribute.DEXTERITY, 2);
+                attributeBonus.put(Attribute.WISDOM, 1);
                 break;
             }
-            case GNOME:{
-                characterRace = CharacterRace.GNOME;
-                AttributeBonus.put(DnDCharacter.Attributes.INTELLIGENCE,2);
-                AttributeBonus.put(DnDCharacter.Attributes.CONSTITUTION,1);
+            case GNOME: {
+                attributeBonus.put(Attribute.INTELLIGENCE, 2);
+                attributeBonus.put(Attribute.CONSTITUTION, 1);
                 break;
             }
         }
-
     }
 
-    public Map<DnDCharacter.Attributes, Integer> getAttributeBonus() {
-        return AttributeBonus;
+    public Map<Attribute, Integer> getAttributeBonus() {
+        return attributeBonus;
     }
 
-    public Map<DnDCharacter.SkillType, Boolean> getSkillBonus() {
-        return SkillBonus;
+    public void setAttributeBonus(Map<Attribute, Integer> attributeBonus) {
+        this.attributeBonus = attributeBonus;
     }
-
-    public CharacterRace getCharacterRace() {
-        return characterRace;
-    }
-
-
-
 }

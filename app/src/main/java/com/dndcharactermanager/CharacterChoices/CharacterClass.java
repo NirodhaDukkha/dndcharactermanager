@@ -1,9 +1,7 @@
 package com.dndcharactermanager.CharacterChoices;
 
-import com.dndcharactermanager.DnDCharacter;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Dylan on 2/7/2017.
@@ -11,94 +9,116 @@ import java.util.Map;
 
 public class CharacterClass {
 
+    public enum CharacterClassType {
+        BARBARIAN,BARD,CLERIC,DRUID,FIGHTER,MONK,
+        PALADIN,RANGER,ROGUE,SORCERER,WARLOCK,WIZARD
+    }
+
+    CharacterClassType characterClassType;
+    private Set<Skill> skills;
+    private Set<Attribute> attributes;
+    private int totalSkillProficiencies = 2;
+    private int classLevel;
+    private int hitDice;
 
     public CharacterClass(CharacterClassType characterClassType){
         this.characterClassType = characterClassType;
-
+        this.skills = new HashSet<>();
         switch(characterClassType){
-            case FIGHTER:{
-                casterWeight = CasterWeight.NONE;
-                totalSkillProficiencies = 2;
-                hitDice = 10;
-
-                DnDCharacter.SkillType skillType = DnDCharacter.SkillType.ACROBATICS;
-                skillType.setCanBeProficient(true);
-                dnDCharacter.getSkillList().add(skillType);
-                skillType = DnDCharacter.SkillType.ATHLETICS;
-                skillType.setCanBeProficient(true);
-                dnDCharacter.getSkillList().add(skillType);
-
-
-                armorProficiency = new HashMap<>();
-
-                for(Armor.ArmorName a : Armor.ArmorName.values()){
-                    armorProficiency.put(a, true);
-                }
-
-                saveProficiency = new HashMap<>();
-                saveProficiency.put(DnDCharacter.Attributes.STRENGTH, true);
-                saveProficiency.put(DnDCharacter.Attributes.CONSTITUTION, true);
-
-                break;
-            }
             case BARBARIAN:{
                 break;
             }
-            case WIZARD:{
+            case BARD:{
+                break;
+            }
+            case CLERIC:{
+                break;
+            }
+            case DRUID:{
+                break;
+            }
+            case FIGHTER:{
+                skills.add(Skill.ACROBATICS);
+                skills.add(Skill.ANIMALHANDLING);
+                skills.add(Skill.ATHLETICS);
+                skills.add(Skill.HISTORY);
+                skills.add(Skill.INSIGHT);
+                skills.add(Skill.INTIMIDATION);
+                skills.add(Skill.PERCEPTION);
+                skills.add(Skill.SURVIVAL);
+                Attribute.STRENGTH.setProficient(true);
+                Attribute.CONSTITUTION.setProficient(true);
+                break;
+            }
+            case MONK:{
                 break;
             }
             case PALADIN:{
                 break;
             }
-
+            case RANGER:{
+                break;
+            }
+            case ROGUE:{
+                break;
+            }
+            case SORCERER:{
+                break;
+            }
+            case WARLOCK:{
+                break;
+            }
+            case WIZARD:{
+                break;
+            }
         }
     }
-
-    public enum CharacterClassType {
-        FIGHTER, BARBARIAN, WIZARD, PALADIN;
-    }
-    private enum CasterWeight {FULL, HALF, THIRD, NONE}
-
-
-    DnDCharacter dnDCharacter = DnDCharacter.getDnDCharacter();
-    CharacterClassType characterClassType;
-
-    private CasterWeight casterWeight;
-    private Map<Armor.ArmorName, Boolean> armorProficiency;
-    private Map<DnDCharacter.Attributes, Boolean> saveProficiency;
-    private int totalSkillProficiencies = 2;
-    private int classLevel;
-    private int hitDice;
 
     public CharacterClassType getCharacterClassType() {
         return characterClassType;
     }
 
-    public CasterWeight getCasterWeight() {
-        return casterWeight;
+    public void setCharacterClassType(CharacterClassType characterClassType) {
+        this.characterClassType = characterClassType;
     }
 
-    public Map<Armor.ArmorName, Boolean> getArmorProficiency() {
-        return armorProficiency;
+    public Set<Skill> getSkills() {
+        return skills;
     }
 
-    public Map<DnDCharacter.Attributes, Boolean> getSaveProficiency() {
-        return saveProficiency;
+    public void setSkills(Set<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public Set<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Set<Attribute> attributes) {
+        this.attributes = attributes;
     }
 
     public int getTotalSkillProficiencies() {
         return totalSkillProficiencies;
     }
 
+    public void setTotalSkillProficiencies(int totalSkillProficiencies) {
+        this.totalSkillProficiencies = totalSkillProficiencies;
+    }
+
     public int getClassLevel() {
         return classLevel;
+    }
+
+    public void setClassLevel(int classLevel) {
+        this.classLevel = classLevel;
     }
 
     public int getHitDice() {
         return hitDice;
     }
 
-    public void setClassLevel(int classLevel) {
-        this.classLevel = classLevel;
+    public void setHitDice(int hitDice) {
+        this.hitDice = hitDice;
     }
 }

@@ -1,16 +1,13 @@
 package com.dndcharactermanager;
 
 
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -50,67 +47,48 @@ public class CharacterClassFragment extends Fragment {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.skill_placeholder,new SkillListFragment()).commit();
 
-        final Spinner levelSpinner = (Spinner) view.findViewById(R.id.level_spinner);
+        //CLASS SPINNER AND ADAPTER
+        final Spinner classSpinner = (Spinner) view.findViewById(R.id.class_spinner);
+        List<CharacterClass.CharacterClassType> characterClassTypes = new ArrayList<>();
+        for(CharacterClass.CharacterClassType c : CharacterClass.CharacterClassType.values()) {
+            characterClassTypes.add(c);
+        }
+        ArrayAdapter<CharacterClass.CharacterClassType> classAdapter =  new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,characterClassTypes);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classSpinner.setAdapter(classAdapter);
 
-        ArrayList<Integer> levelList = new ArrayList<>();
+        //LEVEL SPINNER AND ADAPTER
+        final Spinner levelSpinner = (Spinner) view.findViewById(R.id.level_spinner);
+        List<Integer> levelList = new ArrayList<>();
         for (int i = 1; i < 21; i++) {
             levelList.add(i);
         }
-
         ArrayAdapter<Integer> levelAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,levelList);
         levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(levelAdapter);
 
-        levelSpinner.setAdapter(levelAdapter);
-        final Spinner classSpinner = (Spinner) view.findViewById(R.id.class_spinner);
-        Spinner raceSpinner = (Spinner) view.findViewById(R.id.race_spinner);
 
-        classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        raceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        List<CharacterClass.CharacterClassType> characterClassTypes = new ArrayList<>();
-        List<Race.CharacterRace> characterRaceTypes = new ArrayList<>();
-        for(CharacterClass.CharacterClassType c : CharacterClass.CharacterClassType.values()){
-            characterClassTypes.add(c);
+        //RACE SPINNER AND ADAPTER
+        final Spinner raceSpinner = (Spinner) view.findViewById(R.id.race_spinner);
+        List<Race> raceTypeTypes = new ArrayList<>();
+        for(Race r : Race.values()){
+            raceTypeTypes.add(r);
         }
 
-        for(Race.CharacterRace r : Race.CharacterRace.values()){
-            characterRaceTypes.add(r);
-        }
-
-        ArrayAdapter<CharacterClass.CharacterClassType> classAdapter =  new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,characterClassTypes);
-        ArrayAdapter<Race.CharacterRace> raceAdapter =  new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,characterRaceTypes);
-        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<Race> raceAdapter =  new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, raceTypeTypes);
         raceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classSpinner.setAdapter(classAdapter);
         raceSpinner.setAdapter(raceAdapter);
 
+        //UPDATE CHARACTER WITH CLASS,LEVEL,RACE
         updateButton = (Button) view.findViewById(R.id.bt_update);
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CharacterClass charClass = new CharacterClass((CharacterClass.CharacterClassType) classSpinner.getSelectedItem());
+                Race race = ((Race) raceSpinner.getSelectedItem());
                 charClass.setClassLevel((Integer) levelSpinner.getSelectedItem());
-                dnDCharacter.getCharacterClass().add(charClass);
+//                dnDCharacter.getCharacterClass().add(charClass);
                 dnDCharacter.updateCharacter();
             }
         });
