@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dndcharactermanager.CharacterChoices.Attribute;
 import com.dndcharactermanager.CharacterChoices.CharacterClass;
 import com.google.gson.Gson;
 
@@ -30,10 +31,10 @@ public class AttributeFragment extends Fragment {
 
     DnDCharacter dnDCharacter;
     TextView pointBuyTV;
-    Map<DnDCharacter.Attributes, Button> attributeBTaddMap;
-    Map<DnDCharacter.Attributes, Button> attributeBTsubMap;
-    Map<DnDCharacter.Attributes, TextView> attributeTVvalueMap;
-    Map<DnDCharacter.Attributes, TextView> attributeTVmodMap;
+    Map<Attribute, Button> attributeBTaddMap;
+    Map<Attribute, Button> attributeBTsubMap;
+    Map<Attribute, TextView> attributeTVvalueMap;
+    Map<Attribute, TextView> attributeTVmodMap;
 
     public AttributeFragment() {
         // Required empty public constructor
@@ -60,9 +61,9 @@ public class AttributeFragment extends Fragment {
 
         wireAttributeWidgets(view);
 
-        for(final DnDCharacter.Attributes a : DnDCharacter.Attributes.values()){
+        for(final Attribute a : Attribute.values()){
 
-        attributeBTaddMap.get(a).setOnClickListener(new View.OnClickListener() {
+            attributeBTaddMap.get(a).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addButtonPress(a);
@@ -112,9 +113,9 @@ public class AttributeFragment extends Fragment {
         return view;
     }
 
-    private void addButtonPress(DnDCharacter.Attributes a) {
+    private void addButtonPress(Attribute a) {
         int pointsLeft = dnDCharacter.getAttributePointBuy();
-        int attributeValue = dnDCharacter.getAttributeMap().get(a);
+        int attributeValue = a.getAttributeValue();
 
         if (pointsLeft <= 0){
             Toast.makeText(getContext(), "Not enough points!", Toast.LENGTH_SHORT).show();
@@ -138,8 +139,9 @@ public class AttributeFragment extends Fragment {
             }
 
         }
+
         dnDCharacter.setAttributePointBuy(pointsLeft);
-        dnDCharacter.getAttributeMap().put(a, attributeValue);
+        a.setAttributeValue(attributeValue);
 
         pointBuyTV.setText((Integer.toString(pointsLeft)));
 
@@ -147,9 +149,9 @@ public class AttributeFragment extends Fragment {
         attributeTVmodMap.get(a).setText(Integer.toString(DnDCharacter.getModifier(attributeValue)));
     }
 
-    private void subButtonPress(DnDCharacter.Attributes a) {
+    private void subButtonPress(Attribute a) {
         int pointsLeft = dnDCharacter.getAttributePointBuy();
-        int attributeValue = dnDCharacter.getAttributeMap().get(a);
+        int attributeValue = a.getAttributeValue();
 
         if (attributeValue == 8){
             Toast.makeText(getContext(), "Attribute minimum reached!", Toast.LENGTH_SHORT).show();
@@ -166,7 +168,7 @@ public class AttributeFragment extends Fragment {
             }
 
         dnDCharacter.setAttributePointBuy(pointsLeft);
-        dnDCharacter.getAttributeMap().put(a, attributeValue);
+        a.setAttributeValue(attributeValue);
 
         pointBuyTV.setText((Integer.toString(pointsLeft)));
 
@@ -181,33 +183,33 @@ public class AttributeFragment extends Fragment {
     }
 
     private void wireAttributeWidgets(View view){
-        attributeBTaddMap.put(DnDCharacter.Attributes.STRENGTH, (Button) view.findViewById(R.id.bt_strength_add));
-        attributeBTaddMap.put(DnDCharacter.Attributes.DEXTERITY, (Button) view.findViewById(R.id.bt_dexterity_add));
-        attributeBTaddMap.put(DnDCharacter.Attributes.CONSTITUTION, (Button) view.findViewById(R.id.bt_constitution_add));
-        attributeBTaddMap.put(DnDCharacter.Attributes.INTELLIGENCE, (Button) view.findViewById(R.id.bt_intelligence_add));
-        attributeBTaddMap.put(DnDCharacter.Attributes.WISDOM, (Button) view.findViewById(R.id.bt_wisdom_add));
-        attributeBTaddMap.put(DnDCharacter.Attributes.CHARISMA, (Button) view.findViewById(R.id.bt_charisma_add));
+        attributeBTaddMap.put(Attribute.STRENGTH, (Button) view.findViewById(R.id.bt_strength_add));
+        attributeBTaddMap.put(Attribute.DEXTERITY, (Button) view.findViewById(R.id.bt_dexterity_add));
+        attributeBTaddMap.put(Attribute.CONSTITUTION, (Button) view.findViewById(R.id.bt_constitution_add));
+        attributeBTaddMap.put(Attribute.INTELLIGENCE, (Button) view.findViewById(R.id.bt_intelligence_add));
+        attributeBTaddMap.put(Attribute.WISDOM, (Button) view.findViewById(R.id.bt_wisdom_add));
+        attributeBTaddMap.put(Attribute.CHARISMA, (Button) view.findViewById(R.id.bt_charisma_add));
 
-        attributeBTsubMap.put(DnDCharacter.Attributes.STRENGTH, (Button) view.findViewById(R.id.bt_strength_sub));
-        attributeBTsubMap.put(DnDCharacter.Attributes.DEXTERITY, (Button) view.findViewById(R.id.bt_dexterity_sub));
-        attributeBTsubMap.put(DnDCharacter.Attributes.CONSTITUTION, (Button) view.findViewById(R.id.bt_constitution_sub));
-        attributeBTsubMap.put(DnDCharacter.Attributes.INTELLIGENCE, (Button) view.findViewById(R.id.bt_intelligence_sub));
-        attributeBTsubMap.put(DnDCharacter.Attributes.WISDOM, (Button) view.findViewById(R.id.bt_wisdom_sub));
-        attributeBTsubMap.put(DnDCharacter.Attributes.CHARISMA, (Button) view.findViewById(R.id.bt_charisma_sub));
+        attributeBTsubMap.put(Attribute.STRENGTH, (Button) view.findViewById(R.id.bt_strength_sub));
+        attributeBTsubMap.put(Attribute.DEXTERITY, (Button) view.findViewById(R.id.bt_dexterity_sub));
+        attributeBTsubMap.put(Attribute.CONSTITUTION, (Button) view.findViewById(R.id.bt_constitution_sub));
+        attributeBTsubMap.put(Attribute.INTELLIGENCE, (Button) view.findViewById(R.id.bt_intelligence_sub));
+        attributeBTsubMap.put(Attribute.WISDOM, (Button) view.findViewById(R.id.bt_wisdom_sub));
+        attributeBTsubMap.put(Attribute.CHARISMA, (Button) view.findViewById(R.id.bt_charisma_sub));
 
-        attributeTVvalueMap.put(DnDCharacter.Attributes.STRENGTH, (TextView) view.findViewById(R.id.tv_strength_value));
-        attributeTVvalueMap.put(DnDCharacter.Attributes.DEXTERITY, (TextView) view.findViewById(R.id.tv_dexterity_value));
-        attributeTVvalueMap.put(DnDCharacter.Attributes.CONSTITUTION, (TextView) view.findViewById(R.id.tv_constitution_value));
-        attributeTVvalueMap.put(DnDCharacter.Attributes.INTELLIGENCE, (TextView) view.findViewById(R.id.tv_intelligence_value));
-        attributeTVvalueMap.put(DnDCharacter.Attributes.WISDOM, (TextView) view.findViewById(R.id.tv_wisdom_value));
-        attributeTVvalueMap.put(DnDCharacter.Attributes.CHARISMA, (TextView) view.findViewById(R.id.tv_charisma_value));
+        attributeTVvalueMap.put(Attribute.STRENGTH, (TextView) view.findViewById(R.id.tv_strength_value));
+        attributeTVvalueMap.put(Attribute.DEXTERITY, (TextView) view.findViewById(R.id.tv_dexterity_value));
+        attributeTVvalueMap.put(Attribute.CONSTITUTION, (TextView) view.findViewById(R.id.tv_constitution_value));
+        attributeTVvalueMap.put(Attribute.INTELLIGENCE, (TextView) view.findViewById(R.id.tv_intelligence_value));
+        attributeTVvalueMap.put(Attribute.WISDOM, (TextView) view.findViewById(R.id.tv_wisdom_value));
+        attributeTVvalueMap.put(Attribute.CHARISMA, (TextView) view.findViewById(R.id.tv_charisma_value));
 
-        attributeTVmodMap.put(DnDCharacter.Attributes.STRENGTH, (TextView) view.findViewById(R.id.tv_strength_mod));
-        attributeTVmodMap.put(DnDCharacter.Attributes.DEXTERITY, (TextView) view.findViewById(R.id.tv_dexterity_mod));
-        attributeTVmodMap.put(DnDCharacter.Attributes.CONSTITUTION, (TextView) view.findViewById(R.id.tv_constitution_mod));
-        attributeTVmodMap.put(DnDCharacter.Attributes.INTELLIGENCE, (TextView) view.findViewById(R.id.tv_intelligence_mod));
-        attributeTVmodMap.put(DnDCharacter.Attributes.WISDOM, (TextView) view.findViewById(R.id.tv_wisdom_mod));
-        attributeTVmodMap.put(DnDCharacter.Attributes.CHARISMA, (TextView) view.findViewById(R.id.tv_charisma_mod));
+        attributeTVmodMap.put(Attribute.STRENGTH, (TextView) view.findViewById(R.id.tv_strength_mod));
+        attributeTVmodMap.put(Attribute.DEXTERITY, (TextView) view.findViewById(R.id.tv_dexterity_mod));
+        attributeTVmodMap.put(Attribute.CONSTITUTION, (TextView) view.findViewById(R.id.tv_constitution_mod));
+        attributeTVmodMap.put(Attribute.INTELLIGENCE, (TextView) view.findViewById(R.id.tv_intelligence_mod));
+        attributeTVmodMap.put(Attribute.WISDOM, (TextView) view.findViewById(R.id.tv_wisdom_mod));
+        attributeTVmodMap.put(Attribute.CHARISMA, (TextView) view.findViewById(R.id.tv_charisma_mod));
     }
 
 }

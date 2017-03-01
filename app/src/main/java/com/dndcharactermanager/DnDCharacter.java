@@ -18,6 +18,15 @@ public class DnDCharacter {
     private Race race;
     private Set<CharacterClass> characterClass;
     private int numberOfSkillsProficient;
+
+    public int getAttributePointBuy() {
+        return attributePointBuy;
+    }
+
+    public void setAttributePointBuy(int attributePointBuy) {
+        this.attributePointBuy = attributePointBuy;
+    }
+
     private int attributePointBuy = 27;
     private int characterLevel;
 
