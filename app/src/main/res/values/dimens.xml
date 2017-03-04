@@ -10,4 +10,5 @@
     <dimen name="attribute_textwidth">85dp</dimen>
     <dimen name="attribute_padding">0dp</dimen>
     <dimen name="attribute_button_pad">8dp</dimen>
+    <dimen name="skill_padding">8dp</dimen>
 </resources>

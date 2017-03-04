@@ -15,9 +15,11 @@ import java.util.Set;
 public class DnDCharacter {
 
     //Character Detail Values
-    private Race race;
-    private Set<CharacterClass> characterClass;
-    private int numberOfSkillsProficient;
+    private static Race race;
+    private static Set<CharacterClass> characterClass;
+    private static int numberOfSkillsProficient;
+    private static int attributePointBuy = 27;
+    private static int characterLevel;
 
     public int getAttributePointBuy() {
         return attributePointBuy;
@@ -27,8 +29,6 @@ public class DnDCharacter {
         this.attributePointBuy = attributePointBuy;
     }
 
-    private int attributePointBuy = 27;
-    private int characterLevel;
 
     //Singleton DnDCharacter
     private static DnDCharacter dnDCharacter;
@@ -44,7 +44,7 @@ public class DnDCharacter {
         characterClass = new HashSet<>();
     }
 
-    public void updateCharacter(){
+    public static void updateCharacter(){
         int sum = 0;
         for (CharacterClass c: characterClass) {
             sum += c.getClassLevel();

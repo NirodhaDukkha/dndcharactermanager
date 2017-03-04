@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return AttributeFragment.newInstance();
                 case 1:
-                    return CharacterClassFragment.newInstance();
+                    return SkillFragment.newInstance();
             }
             return PlaceholderFragment.newInstance(position);
         }
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "ATTRIBUTES";
                 case 1:
-                    return "CLASS";
+                    return "SKILLS";
             }
             return null;
         }

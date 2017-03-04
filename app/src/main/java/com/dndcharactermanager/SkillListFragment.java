@@ -9,15 +9,38 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.dndcharactermanager.CharacterChoices.Skill;
+
+import java.util.HashMap;
+import java.util.HashSet;
+
 
 public class SkillListFragment extends Fragment {
 
-    DnDCharacter dnDCharacter;
+    //        ACROBATICS,ANIMALHANDLING,ARCANA,ATHLETICS,DECEPTION,
+//                HISTORY,INSIGHT,INTIMIDATION,INVESTIGATION,MEDICINE,
+//                NATURE,PERCEPTION,PERFORMANCE,PERSUASION,RELIGION,
+//                SLEIGHTOFHAND,STEALTH,SURVIVAL;
 
-    CheckBox athleticsCheckBox;
+    HashMap<Skill,CheckBox> checkBoxHashMap;
     CheckBox acrobaticsCheckBox;
-    CheckBox survivalCheckBox;
+    CheckBox animalhandlingCheckBox;
+    CheckBox arcanaCheckBox;
+    CheckBox athleticsCheckBox;
+    CheckBox deceptionCheckBox;
+    CheckBox historyCheckBox;
+    CheckBox insightCheckBox;
+    CheckBox intimidationCheckBox;
+    CheckBox investigationCheckBox;
     CheckBox medicineCheckBox;
+    CheckBox natureCheckBox;
+    CheckBox perceptionCheckBox;
+    CheckBox performanceCheckBox;
+    CheckBox persuasionCheckBox;
+    CheckBox religionCheckBox;
+    CheckBox sleightofhandCheckBox;
+    CheckBox stealthCheckbox;
+    CheckBox survivalCheckBox;
 
     public SkillListFragment() {
         // Required empty public constructor
@@ -29,9 +52,7 @@ public class SkillListFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_skill_list, container, false);
-        dnDCharacter = DnDCharacter.getDnDCharacter();
 
-        dnDCharacter = DnDCharacter.getDnDCharacter();
         athleticsCheckBox = (CheckBox) view.findViewById(R.id.cb_athletics);
         acrobaticsCheckBox = (CheckBox) view.findViewById(R.id.cb_acrobatics);
         survivalCheckBox = (CheckBox) view.findViewById(R.id.cb_survival);
@@ -40,33 +61,40 @@ public class SkillListFragment extends Fragment {
         athleticsCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addSkillProficiency(dnDCharacter,DnDCharacter.SkillType.ATHLETICS);
+                addSkillProficiency(Skill.ATHLETICS);
             }
         });
         acrobaticsCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addSkillProficiency(dnDCharacter,DnDCharacter.SkillType.ACROBATICS);
+                addSkillProficiency(Skill.ACROBATICS);
             }
         });
         survivalCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addSkillProficiency(dnDCharacter,DnDCharacter.SkillType.SURVIVAL);
+                addSkillProficiency(Skill.SURVIVAL);
             }
         });
         medicineCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addSkillProficiency(dnDCharacter,DnDCharacter.SkillType.MEDICINE);
+                addSkillProficiency(Skill.MEDICINE);
             }
         });
         return view;
     }
 
-    private void addSkillProficiency(DnDCharacter dnDCharacter, DnDCharacter.SkillType skill){
+    private void addSkillProficiency(Skill skill){
         if (skill.isCanBeProficient()){
             skill.setProficient(true);
+        }
+    }
+
+    private void fillHashMap(){
+        checkBoxHashMap = new HashMap<>();
+        for(Skill s:Skill.values()){
+
         }
     }
 }

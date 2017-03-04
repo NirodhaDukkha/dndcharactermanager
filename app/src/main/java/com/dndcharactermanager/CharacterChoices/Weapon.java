@@ -11,7 +11,7 @@ public class Weapon {
     public enum WeaponName {LONGSWORD, SHORTSWORD, LONGBOW, SHORTBOW}
     private WeaponName weaponName;
     private int WeaponDamage;
-    private DnDCharacter.Attributes WeaponAttribute;
+    private Attribute WeaponAttribute;
 
     //TODO: IMPLEMENT WEAPON PROFICIENCIES/TYPES
 
@@ -24,25 +24,25 @@ public class Weapon {
             case LONGSWORD: {
                 weaponName = lookup;
                 WeaponDamage = 8;
-                WeaponAttribute = DnDCharacter.Attributes.STRENGTH;
+                WeaponAttribute = Attribute.STRENGTH;
                 break;
             }
             case SHORTSWORD: {
                 weaponName = lookup;
                 WeaponDamage = 6;
-                WeaponAttribute = DnDCharacter.Attributes.STRENGTH;
+                WeaponAttribute = Attribute.STRENGTH;
                 break;
             }
             case LONGBOW: {
                 weaponName = lookup;
                 WeaponDamage = 8;
-                WeaponAttribute = DnDCharacter.Attributes.DEXTERITY;
+                WeaponAttribute = Attribute.DEXTERITY;
                 break;
             }
             case SHORTBOW: {
                 weaponName = lookup;
                 WeaponDamage = 6;
-                WeaponAttribute = DnDCharacter.Attributes.DEXTERITY;
+                WeaponAttribute = Attribute.DEXTERITY;
                 break;
             }
         }
@@ -56,7 +56,4 @@ public class Weapon {
         return WeaponDamage;
     }
 
-    public DnDCharacter.Attributes getWeaponAttribute() {
-        return WeaponAttribute;
-    }
 }
