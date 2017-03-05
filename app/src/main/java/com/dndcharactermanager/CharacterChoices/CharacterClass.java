@@ -1,5 +1,7 @@
 package com.dndcharactermanager.CharacterChoices;
 
+import com.dndcharactermanager.CharacterChoices.Skill.Skill;
+
 import java.util.HashSet;
 import java.util.Set;
 

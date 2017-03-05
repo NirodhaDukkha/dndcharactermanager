@@ -1,9 +1,7 @@
 package com.dndcharactermanager;
 
-import com.dndcharactermanager.CharacterChoices.Attribute;
 import com.dndcharactermanager.CharacterChoices.CharacterClass;
 import com.dndcharactermanager.CharacterChoices.Race;
-import com.dndcharactermanager.CharacterChoices.Skill;
 
 import java.util.HashSet;
 import java.util.Set;

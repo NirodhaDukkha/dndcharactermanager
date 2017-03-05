@@ -98,6 +98,7 @@ public class AttributeFragment extends Fragment {
 
             }
         });
+
         List<CharacterClass.CharacterClassType> characterClassTypes = new ArrayList<>();
         for(CharacterClass.CharacterClassType c : CharacterClass.CharacterClassType.values()){
             characterClassTypes.add(c);
