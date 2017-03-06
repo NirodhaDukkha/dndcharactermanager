@@ -1,6 +1,8 @@
 package com.dndcharactermanager;
 
 
+import android.graphics.pdf.PdfDocument;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,18 +12,31 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.dndcharactermanager.CharacterChoices.Attribute;
 import com.dndcharactermanager.CharacterChoices.CharacterClass;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -35,6 +50,11 @@ public class AttributeFragment extends Fragment {
     Map<Attribute, Button> attributeBTsubMap;
     Map<Attribute, TextView> attributeTVvalueMap;
     Map<Attribute, TextView> attributeTVmodMap;
+
+    private static final String ENDPOINT = "https://roll20.net/compendium/dnd5e/Classes:Fighter.json";
+    private RequestQueue requestQueue;
+    private Gson gson;
+    private CharacterClassGsonHelper charGson;
 
     public AttributeFragment() {
         // Required empty public constructor
@@ -107,12 +127,49 @@ public class AttributeFragment extends Fragment {
         classSpinner.setAdapter(classAdapter);
         classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        gson = new Gson();
+        requestQueue = Volley.newRequestQueue(getContext());
+        fetchPosts();
+
+
+        ImageButton button = (ImageButton) view.findViewById(R.id.bt_class_info);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String json = null;
+
+
+
+            }
+        });
+
 //        Gson gson = new Gson();
 //        String jsonString = gson.toJson(dnDCharacter);
 //        Log.i("BUTTS","export to json: " + jsonString);
 
         return view;
     }
+
+    private void fetchPosts() {
+        StringRequest request = new StringRequest(Request.Method.GET, ENDPOINT, onPostsLoaded, onPostsError);
+        requestQueue.add(request);
+    }
+
+    private final Response.Listener<String> onPostsLoaded = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.i("PostActivity", response);
+            charGson = gson.fromJson(response,CharacterClassGsonHelper.class);
+            Log.d("BUTTS", "onResponse: " + charGson.name);
+        }
+    };
+
+    private final Response.ErrorListener onPostsError = new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.e("PostActivity", error.toString());
+        }
+    };
 
     private void addButtonPress(Attribute a) {
         int pointsLeft = dnDCharacter.getAttributePointBuy();

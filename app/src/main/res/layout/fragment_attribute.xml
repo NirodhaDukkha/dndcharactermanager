@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
     tools:context="com.dndcharactermanager.AttributeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
 
     <!-- STRENGTH ROW -->
 
@@ -272,7 +271,7 @@
     <!-- CHARISMA ROW -->
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -369,9 +368,21 @@
 
     <Spinner
         android:layout_width="0dp"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:layout_height="48dp"
         android:id="@+id/att_class_spinner"
+        />
+
+    <ImageButton
+        android:id="@+id/bt_class_info"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dnd_program_questionmark"
+        android:maxWidth="48dp"
+        android:maxHeight="48dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         />
 
     <Spinner
@@ -381,7 +392,11 @@
         android:id="@+id/att_level_spinner"
         />
 
+
+
     </LinearLayout>
+
+    <!--Race Picker-->
 
     <LinearLayout
         android:layout_width="match_parent"
